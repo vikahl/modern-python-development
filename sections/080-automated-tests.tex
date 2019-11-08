@@ -1,0 +1,43 @@
+\section{Automatisera tester}
+
+\begin{frame}{Automatisera med Pre-commit}
+  \begin{itemize}
+    \item Ramverk för att hantera git pre-commit hooks
+    \item Skrivet i Python, men inte bara för Python
+    \item Konfigureras med \texttt{.pre-commit} \textsc{yaml} fil
+    \item Måste manuellt installeras, ersätter inte \textsc{ci}
+    \item Kör linters, autoformattera JSON, …
+  \end{itemize}
+  \gittag{pre-commit}
+\end{frame}
+
+% \begin{frame}[fragile]{Exempel på konfiguration}
+%   \begin{minted}{yaml}
+%     repos:
+%     - repo: https://github.com/pre-commit/pre-commit-hooks
+%       rev: v2.3.0
+%       hooks:
+%         - id: pretty-format-json
+%         - id: check-json
+%     - repo: https://github.com/psf/black
+%       rev: stable
+%       hooks:
+%       - id: black
+%     - repo: https://github.com/pre-commit/mirrors-pylint
+%       rev: master
+%       hooks:
+%       -  id: pylint
+%   \end{minted}
+% \end{frame}
+
+
+\begin{frame}{tox}
+  \begin{itemize}
+    \item Automatisera tester med definerade testfall
+    \item Unika virtualenv för tester -- skilj från utvecklingsvenv
+    \item Möjliggör test i flera Python-versioner
+    \item Passar utmärkt att köra i \textsc{ci}
+  \end{itemize}
+
+  \gittag{tox}
+\end{frame}

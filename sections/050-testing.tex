@@ -1,0 +1,27 @@
+\section{Testing}
+
+\begin{frame}{Pytest}
+  \begin{itemize}
+    \item Fantastiskt testramverk, bättre än Unittest från standardbiblioteket
+    \item Läs Brian Okkens \emph{Python Testing with pytest} (Pragmatic bookshelf)
+    \item Fixturer, plugins, rena asserts, …
+    \item \mintinline{python}{assert data is not None}
+  \end{itemize}
+  \gittag{pytest}
+\end{frame}
+
+\begin{frame}{Testtäckning med coverage}
+  \begin{itemize}
+    \item Plugin till pytest: \mintinline{shell-session}{pytest --cov=todo-extractor}
+    \item Mäter testtäckning
+    \item Genererar rapporter för människor och maskiner\\
+          \textsc{html}, \textsc{xml}, …
+  \end{itemize}
+
+  \vfill
+  {\small\ttfamily
+    Name                Stmts   Miss  Cover\\
+    ---------------------------------------\\
+    todo\_extractor.py      22      7    68%
+  }
+\end{frame}
