@@ -1,0 +1,74 @@
+\section{Type hinting}
+
+\begin{frame}{Type hinting och type annotations}
+  \begin{itemize}
+    \item Python är fortfarande dynamiskt typat
+    \item Underlättar och dokumenterar för utvecklare och IDE
+    \item[]
+    \item \mintinline{python}{def prepare_plot(value: int, unit: str) -> dict}
+    \item Statisk typkontroll med MyPy
+  \end{itemize}
+
+  \gittag{type-hint}
+\end{frame}
+
+\begin{frame}{Typing modulen}
+  \begin{itemize}
+    \item \emph{typing} modulen ger fler möjligheter
+    \item \mintinline{python}{typing.Union[str, int]}
+    \item \mintinline{python}{typing.List[str]}
+    \item \mintinline{python}{typing.Dict[str, set]}
+    \item \mintinline{python}{typing.Iterable}
+    \item \mintinline{python}{typing.Any}
+    \item …
+    \item Klasser är också typer
+    \item Använd strängar för att annotera om typen inte är tillgänglig
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Nytt i 3.8}
+  \begin{itemize}
+    \item \mintinline{python}{Literal} definerar unika värden\\
+      {\small\mintinline{python}{def print_length(length, unit=typing.Literal["m", "ft"])}}
+    \item[]
+    \item \mintinline{python}{Final} för värden som inte \emph{bör} defineras om\\
+     \mintinline{python}{user_id: typing.Final[int] = 24}
+    \item \mintinline{python}{@typing.final} för klasser och metoder som inte \emph{bör} ärvas/ändras av subklasser
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Nytt i 3.8 : TypedDict : PEP\,589}
+
+  \begin{minted}[fontsize=\small]{python}
+    class OpKoKo(typing.TypedDict):
+      edition: str
+      start_date: datetime.date
+
+    current = OpKoKo(edition="19.2", date=datetime.date(2019, 11, 8)
+    # …
+    def printable_program(current: OpKoKo) -> str:
+  \end{minted}
+
+  \begin{itemize}
+    \item Bättre kontroll av typer i en dict
+    \item Objektet blir en vanlig dict
+    \item Jämför: named tuple eller dataclasses
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Nytt i 3.8 : Protocols : PEP\,544}
+  \begin{itemize}
+    \item Static ducktyping
+    \item Specifierar metoder/attribut objektet \emph{ska} ha
+  \end{itemize}
+
+  \begin{minted}[fontsize=\small,autogobble]{python}
+    class ChessPiece(typing.Protocol):
+      name: str
+      def move(self) -> None:
+        pass
+
+    def play(piece: ChessPiece, x: int, y: int) -> None:
+      piece.move(x, y)
+  \end{minted}
+\end{frame}

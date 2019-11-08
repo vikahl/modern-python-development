@@ -1,0 +1,49 @@
+\documentclass{beamer}
+\usetheme[
+  titleformat=smallcaps,
+  numbering=fraction]{metropolis}
+
+% \usepackage{graphicx}
+% \graphicspath{fig/}
+
+\setmonofont{Fira Mono}[BoldFont={Fira Mono Medium},Scale=MatchLowercase]
+
+\usepackage{fontawesome}
+
+\usepackage{minted}
+\usemintedstyle{vs}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{swedish}
+
+\setbeamerfont{caption}{size=\scriptsize}
+
+\usepackage{hyperref}
+
+\newcommand{\gittag}[1]{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=2ex,xshift=1em,anchor=south west] at (current page.south west) {\faicon{git}\hspace{1ex}#1};
+  \end{tikzpicture}
+}
+
+\title{Modern Pythonutveckling}
+\date{~}
+\author{Viktor Ahlqvist}
+\institute{OpKoKo 19.2\\\faicon{github}/vikahl/modern-python-development}
+
+\begin{document}
+\maketitle
+
+\input{sections/010-introduction}
+\input{sections/020-installation}
+\input{sections/030-tools}
+\input{sections/040-typehint}
+\input{sections/050-testing}
+\input{sections/070-flit}
+\input{sections/080-automated-tests}
+% \input{sections/090-travis}
+\input{sections/100-cookiecutter}
+\input{sections/110-finish}
+
+
+\end{document}

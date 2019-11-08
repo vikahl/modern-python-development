@@ -1,0 +1,33 @@
+\section{Paketera som modul}
+
+\begin{frame}{Paketera som modul}
+  \begin{itemize}
+    \item Finns många sätt men jag rekommenderar Flit
+    \item Starta med \mintinline{shell-session}{flit init}
+    \item Konfigureras i \texttt{pyproject.toml}\\
+      PEP\,518 -- {\small\textit{Specifying minimum build system requirements for Python projects}}
+  \end{itemize}
+  \gittag{flit-init}
+\end{frame}
+
+\begin{frame}{Paketera som modul}
+  \begin{itemize}
+    \item Stödjer inte \texttt{requirements.txt} → flytta beroenden
+    \item Installera med symlänk/\texttt{pth}-filer för \textsc{tdd}
+  \end{itemize}
+  \gittag{flit-full}
+\end{frame}
+
+\begin{frame}[fragile]{Publicera modulen}
+  \begin{itemize}
+    \item Testa mot \url{test.pypi.org}
+    \item Konfigurera egna servrar i \texttt{~/.pypirc}
+    \item \mintinline{shell-session}{flit --repository testpypi publish}
+  \end{itemize}
+
+  \vfill
+
+  Installera modulen med \mintinline{shell-session}{pipx install todo-extractor}
+
+  \gittag{install-module}
+\end{frame}
