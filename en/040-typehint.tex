@@ -1,0 +1,79 @@
+\section{Type hinting}
+
+\begin{frame}[fragile]{Type hinting and type annotations}
+  \begin{itemize}
+    \item Python is still dynamically typed
+    \item Makes it easier for developers and IDE
+    \item Developed driven by Dropbox with MyPy
+    \item Static type checking (linting) with type checkers
+  \end{itemize}
+
+  \begin{figure}
+    \begin{minted}[autogobble]{python}
+      def prepare_plot(value: int, unit: str) -> dict
+    \end{minted}
+  \end{figure}
+
+  \gittag{type-hint}
+\end{frame}
+
+\begin{frame}{Typing module}
+  \begin{itemize}
+    \item The \emph{typing} module gives more possibilities
+    \item \mintinline{python}{typing.Union[str, int]}
+    \item \mintinline{python}{typing.List[str]}
+    \item \mintinline{python}{typing.Dict[str, set]}
+    \item \mintinline{python}{typing.Iterable}
+    \item \mintinline{python}{typing.Any}
+    \item …
+    \item Classes are also types
+    \item Use strings to annotate if the type is not available
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{New in 3.8}
+  \begin{itemize}
+    \item \mintinline{python}{Literal} defines unique values\\
+      {\small\mintinline{python}{def print_length(length, unit=typing.Literal["m", "ft"])}}
+    \item[]
+    \item \mintinline{python}{Final} for values that \emph{should not} be re-defined\\
+     \mintinline{python}{user_id: typing.Final[int] = 24}
+    \item \mintinline{python}{@typing.final} for classes and methods that \emph{should not} be inherited or re-defined
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{New in 3.8 : TypedDict : PEP\,589}
+
+  \begin{minted}[fontsize=\small,autogobble]{python}
+    class OpKoKo(typing.TypedDict):
+      edition: str
+      start_date: datetime.date
+
+    current = OpKoKo(edition="19.2", date=datetime.date(2019, 11, 8)
+    # …
+    def printable_program(current: OpKoKo) -> str:
+  \end{minted}
+
+  \begin{itemize}
+    \item Better control of types in a dict
+    \item The object is a normal dict
+    \item \emph{Similar to \emph{named tuple} or \emph{dataclasses}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{New in 3.8 : Protocols : PEP\,544}
+  \begin{itemize}
+    \item Static duck typing
+    \item Specifies methods/attributes that an object \emph{should} have
+  \end{itemize}
+
+  \begin{minted}[fontsize=\small,autogobble]{python}
+    class ChessPiece(typing.Protocol):
+      name: str
+      def move(self) -> None:
+        pass
+
+    def play(piece: ChessPiece, x: int, y: int) -> None:
+      piece.move(x, y)
+  \end{minted}
+\end{frame}

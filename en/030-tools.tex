@@ -1,0 +1,113 @@
+\section{Tools and code quality}
+
+\begin{frame}{Linters}
+    \begin{itemize}
+      \item Programs that analyse the code for potential errors
+      \item PEP\,8 -- \textit{Style guide for Python code}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Linters : Pylint}
+  \begin{columns}
+    \begin{column}{0.6\linewidth}
+      \begin{itemize}
+        \item Syntax, style, docstrings, static analysis
+        \item Whiny, but catches a lot
+        \item Will probably need config
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{0.4\linewidth}
+      {\ttfamily\tiny
+        C0326: No space allowed around keyword argument assignment\\
+        C0114: Missing module docstring\\
+        W0102: Dangerous default value [] as argument\\
+        C0116: Missing function or method docstring\\
+        E0602: Undefined variable 'my\_list'\\
+        Your code has been rated at -12.50/10
+      }
+
+      \begin{minted}[fontsize=\footnotesize,autogobble]{python}
+        def add_2(arg = []):
+          arg.append(2)
+          print(arg)
+          return my_list
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Linters : Flake8}
+  \begin{columns}
+    \begin{column}{0.6\linewidth}
+      \begin{itemize}
+        \item Similar analysis as Pylint
+        \item Covers less means less whiny
+        \item Easier to use in existing code bases
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      {\ttfamily\tiny
+        E251 unexpected spaces around keyword / parameter equals\\
+        F821 undefined name 'my\_list'
+      }
+
+      \begin{minted}[fontsize=\footnotesize,autogobble]{python}
+        def add_2(arg = []):
+          arg.append(2)
+          print(arg)
+          return my_list
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Linters : Bandit}
+  \begin{itemize}
+    \item Security oriented, rates issues with severity and confidence
+    \item Searches in the code and included packages
+  \end{itemize}
+
+  \begin{figure}
+    \begin{minted}[fontsize=\tiny]{shell-session}
+      >> Issue: [B502:ssl_with_bad_version] ssl.wrap_socket call with
+      insecure SSL/TLS protocol version identified, security issue.
+         Severity: High   Confidence: High
+         Location: ./ssl-insecure-version.py:4
+         More Info: https://bandit.readthedocs.io/en/latest/plugins/b502…
+      3
+      4	ssl.wrap_socket(ssl_version=ssl.PROTOCOL_SSLv2)
+      5	SSL.Context(method=SSL.SSLv2_METHOD)
+    \end{minted}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Auto formatters : Black}
+  \begin{itemize}
+    \item Formats the code automatically
+    \item \textit{The uncompromising code formatter}
+      \begin{itemize}
+        \item line length
+        \item normalization of quotes
+      \end{itemize}
+    \item Guarantees the same execution of code after formatting
+    \item Alternatives: \textsc{yapf}, autoformatter
+  \end{itemize}
+
+
+  My advice: choose Black and focus on delivering value instead of bike shedding
+  \gittag{black}
+\end{frame}
+
+\begin{frame}[standout]{Linters och auto formatters}
+  Run linters and auto formatters at PR and demand that the are successful before merge
+\end{frame}
+
+% \begin{frame}{Konfigurationsfiler}
+%   \begin{itemize}
+%       \item Traditionellt sett många olika
+%       \item PEP\,518 -- {\small\textit{Specifying minimum build system requirements for Python projects}}
+%       \item \texttt{pyproject.toml}, \textsc{toml}-format
+%       \item Andra verktyg kan också använda den här filen men alla stödjer ännu inte denna.
+%   \end{itemize}
+% \end{frame}

@@ -1,0 +1,33 @@
+\section{Package as a module}
+
+\begin{frame}{Package as a module}
+  \begin{itemize}
+    \item There are multiple ways -- I recommend Flit
+    \item Start with \mintinline{shell-session}{flit init}
+    \item Configurable in \texttt{pyproject.toml}\\
+      PEP\,518 -- {\small\textit{Specifying minimum build system requirements for Python projects}}
+  \end{itemize}
+  \gittag{flit-init}
+\end{frame}
+
+\begin{frame}{More about Flit}
+  \begin{itemize}
+    \item Does not support \texttt{requirements.txt} → flytta beroenden
+    \item Install with sym links/\texttt{pth}-files for \textsc{tdd}
+  \end{itemize}
+  \gittag{flit-full}
+\end{frame}
+
+\begin{frame}[fragile]{Publish the module}
+  \begin{itemize}
+    \item Test against \url{test.pypi.org}
+    \item Configure your own servers in \texttt{\textasciitilde/.pypirc}
+    \item \mintinline{shell-session}{flit --repository testpypi publish}
+  \end{itemize}
+
+  \vfill
+
+  Install the module with \mintinline{shell-session}{pipx install todo-extractor}
+
+  \gittag{install-module}
+\end{frame}

@@ -6,7 +6,7 @@
     \item Skrivet i Python, men inte bara för Python
     \item Konfigureras med \texttt{.pre-commit} \textsc{yaml} fil
     \item Måste manuellt installeras, ersätter inte \textsc{ci}
-    \item Kör linters, autoformattera JSON, …
+    \item Kör linters, autoformattera och sortera \textsc{json}, …
   \end{itemize}
   \gittag{pre-commit}
 \end{frame}
@@ -33,9 +33,9 @@
 
 \begin{frame}{tox}
   \begin{itemize}
-    \item Automatisera tester med definerade testfall
+    \item Automatisera tester med definerade testmiljöer
     \item Unika virtualenv för tester -- skilj från utvecklingsvenv
-    \item Möjliggör test i flera Python-versioner
+    \item Underlättar tester i flera Python-versioner
     \item Passar utmärkt att köra i \textsc{ci}
   \end{itemize}
 

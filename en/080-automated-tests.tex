@@ -1,0 +1,42 @@
+\section{Automate tests}
+
+\begin{frame}{Automate with Pre-commit}
+  \begin{itemize}
+    \item Framework for managing git pre-commit hooks
+    \item Written in Python, but not limited to Python
+    \item Configured in \texttt{.pre-commit} \textsc{yaml} file
+    \item Must be installed manually by each developer, does not replace \textsc{ci}
+  \end{itemize}
+  \gittag{pre-commit}
+\end{frame}
+
+\begin{frame}[fragile]{Example configuration}
+  \begin{minted}{yaml}
+    repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v2.3.0
+      hooks:
+        - id: pretty-format-json
+        - id: check-json
+    - repo: https://github.com/psf/black
+      rev: stable
+      hooks:
+      - id: black
+    - repo: https://github.com/pre-commit/mirrors-pylint
+      rev: master
+      hooks:
+      -  id: pylint
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}{tox}
+  \begin{itemize}
+    \item Automates tests with defined test environments
+    \item Unique venvs disconnected from development
+    \item Easily enables testing in multiple Python versions
+    \item Can be run in \textsc{ci}
+  \end{itemize}
+
+  \gittag{tox}
+\end{frame}
