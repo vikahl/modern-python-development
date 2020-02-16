@@ -1,0 +1,27 @@
+name: Build English presentation
+on:
+  pull_request:
+    paths:
+      - 'presentation-en.tex'
+      - 'sv/**'
+      - 'fig/**'
+      - 'preamble.tex'
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v1
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: presentation-en.tex
+          args: |
+            -lualatex --file-line-error --interaction=nonstopmode -shell-escape
+          extra_system_packages: "py-pygments"
+      - name: Upload the presentation
+        uses: actions/upload-artifact@v1
+        with:
+          name: Modern Python development - English
+          path: presentation-en.pdf
